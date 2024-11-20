@@ -1,0 +1,38 @@
+class Building:
+    def __init__(self, height, area, address):
+        self.height = height
+        self.area = area
+        self.address = address
+
+    def show_info(self):
+        print(f"Building: Height={self.height}m, Area={self.area}sqm, Address={self.address}")
+
+
+class House(Building):
+    def __init__(self, height, area, address, floors, owner):
+        super().__init__(height, area, address)
+        self.floors = floors
+        self.owner = owner
+
+    def show_info(self):
+        print(f"House: Height={self.height}m, Area={self.area}sqm, Address={self.address}, "
+              f"Floors={self.floors}, Owner={self.owner}")
+
+
+def find_most_spacious_house(houses):
+    if not houses:
+        return None
+    return max(houses, key=lambda house: house.height / house.floors)
+
+house1 = House(10, 200, "123 Main St", 2, "John Doe")
+house2 = House(15, 250, "456 Elm St", 3, "Jane Smith")
+house3 = House(12, 180, "789 Oak St", 2, "Alice Johnson")
+
+houses = [house1, house2, house3]
+
+for house in houses:
+    house.show_info()
+
+most_spacious = find_most_spacious_house(houses)
+print("\nMost spacious house:")
+most_spacious.show_info()

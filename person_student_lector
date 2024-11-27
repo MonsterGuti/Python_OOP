@@ -1,0 +1,68 @@
+class Person:
+    def __init__(self, f_name, l_name, age, nat):
+        self.f_name = f_name
+        self.l_name = l_name
+        self.age = age
+        self.nat = nat
+
+    def print_info(self):
+        print(self.f_name, self.l_name, self.age, self.nat)
+
+    def change_age(self):
+        my_age = int(input("Enter new age: "))
+        self.age = my_age
+
+    def __str__(self):
+        return f"Person({self.f_name}, {self.l_name}, {self.age}, {self.nat})"
+
+
+class Student(Person):
+    def __init__(self, f_name, l_name, age, nat, grade):
+        super().__init__(f_name, l_name, age, nat)
+        self.grade = grade
+
+    def print_info(self):
+        print(self.f_name, self.l_name, self.age, self.nat, self.grade)
+
+    def change_grade(self):
+        my_grade = float(input("Enter new grade: "))
+        self.grade = my_grade
+
+    def __str__(self):
+        return f"Student({self.f_name}, {self.l_name}, {self.age}, {self.nat}, Grade: {self.grade})"
+
+
+class Lector(Person):
+    def __init__(self, f_name, l_name, age, nat, experience, salary):
+        super().__init__(f_name, l_name, age, nat)
+        self.experience = experience
+        self.salary = salary
+
+    def print_info(self):
+        print(self.f_name, self.l_name, self.age, self.nat, self.experience, self.salary)
+
+    def change_experience(self):
+        my_experience = int(input("Enter new years of experience: "))
+        self.experience = my_experience
+
+    def __str__(self):
+        return f"Lector({self.f_name}, {self.l_name}, {self.age}, {self.nat}, Experience: {self.experience}, Salary: {self.salary})"
+ 
+
+my_list = []
+
+p1 = Person("Ivelin", "Belovezdov", 31, "german")
+p1.print_info()
+p1.change_age()
+
+s1 = Student("Martin", "Gogulanov", 19, "bulgarian", 6.00)
+s1.print_info()
+s1.change_grade()
+
+l1 = Lector("Georgi", "Malchev", 50, "greek", 21, 2700)
+l1.print_info()
+l1.change_experience()
+
+print(p1)
+print(s1)
+print(l1)

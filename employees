@@ -1,0 +1,98 @@
+class Employee:
+    def __init__(self, name, age, salary):
+        self.name = name
+        self.age = age
+        self.salary = salary
+
+    def get_employee_info(self):
+        return f"name: {self.name}, age: {self.age}, salary: {self.salary}"
+
+
+class Manager(Employee):
+    def __init__(self, name, age, salary, department):
+        super().__init__(name, age, salary)
+        self.department = department
+
+    def get_manager_info(self):
+        return f"name: {self.name}, age: {self.age}, salary: {self.salary}, department: {self.department}"
+
+
+class SalesPerson(Employee):
+    def __init__(self, name, age, salary, sales_target):
+        super().__init__(name, age, salary)
+        self.sales_target = sales_target
+
+    def get_salesperson_info(self):
+        return f"name: {self.name}, age: {self.age}, salary: {self.salary}, sales_target: {self.sales_target}"
+
+
+def add_employee(name, age, salary):
+    employee = Employee(name, age, salary)
+    employees.append(employee)
+
+
+def add_manager(name, age, salary, department):
+    manager = Manager(name, age, salary, department)
+    employees.append(manager)
+
+
+def add_sales_person(name, age, salary, sales_target):
+    sales_person = SalesPerson(name, age, salary, sales_target)
+    employees.append(sales_person)
+
+
+def print_employee_info(employees):
+    for employee in employees:
+        if isinstance(employee, Manager):
+            print(employee.get_manager_info())
+        elif isinstance(employee, SalesPerson):
+            print(employee.get_salesperson_info())
+        else:
+            print(employee.get_employee_info())
+
+
+def check_manager_age(employees):
+    print("\nManagers older than 50:")
+    for employee in employees:
+        if isinstance(employee, Manager) and employee.age > 50:
+            print(employee.get_manager_info())
+
+
+def check_sales_person_sales(employees):
+    print("\nSalespersons with sales target above 100,000:")
+    for employee in employees:
+        if isinstance(employee, SalesPerson) and employee.sales_target > 100000:
+            print(employee.get_salesperson_info())
+
+
+employees = []
+
+n = int(input("Enter the number of employees: "))
+for _ in range(n):
+    emp_type = input("Enter the type of employee (employee, manager, salesperson): ").strip().lower()
+    if emp_type == "employee":
+        name = input("Enter the name of the employee: ")
+        age = int(input("Enter the age of the employee: "))
+        salary = int(input("Enter the salary of the employee: "))
+        add_employee(name, age, salary)
+    elif emp_type == "manager":
+        name = input("Enter the name of the manager: ")
+        age = int(input("Enter the age of the manager: "))
+        salary = int(input("Enter the salary of the manager: "))
+        department = input("Enter the department of the manager: ")
+        add_manager(name, age, salary, department)
+    elif emp_type == "salesperson":
+        name = input("Enter the name of the salesperson: ")
+        age = int(input("Enter the age of the salesperson: "))
+        salary = int(input("Enter the salary of the salesperson: "))
+        sales_target = int(input("Enter the sales target of the salesperson: "))
+        add_sales_person(name, age, salary, sales_target)
+    else:
+        print("Invalid employee type. Please try again.")
+        continue
+
+print("\nEmployee Information:")
+print_employee_info(employees)
+
+check_manager_age(employees)
+check_sales_person_sales(employees)

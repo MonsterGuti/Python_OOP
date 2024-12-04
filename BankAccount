@@ -1,0 +1,49 @@
+class BankAccount:
+    def __init__(self, id, f_name, l_name, status, amount):
+        self.id = id
+        self.f_name = f_name
+        self.l_name = l_name
+        self.status = status
+        self.amount = amount
+
+    def print_info(self):
+        return f"ID: {self.id}, f_name: {self.f_name}, l_name = {self.l_name}, status: {self.status}, amount: {self.amount}"
+
+    def change_status(self):
+        my_status = input("Enter the updated status: ")
+        self.status = my_status
+
+
+p1 = BankAccount(11, "Martin", "Gogulanov", "active", 7567)
+p2 = BankAccount(12, "Ivelin", "Belovejdov", "active", 6536)
+p3 = BankAccount(13, "Georgi", "Baldjiev", "passive", 60000)
+p4 = BankAccount(14, "Viktor", "Vladinov", "active", 3142)
+p5 = BankAccount(15, "Danail", "Atanasov", "passive", 5346)
+
+my_list = [p1, p2, p3, p4, p5]
+
+money = float(input("Enter a sum: "))
+my_id = int(input("Enter a ID: "))
+
+
+def withdraw(my_list, money, my_id):
+    account_found = False
+    for person in my_list:
+        if person.id == my_id:
+            account_found = True
+            if person.amount < money:
+                print("Insufficient funds!")
+                print(f"Current balance: {person.amount} lv")
+            else:
+                print("OK!")
+                person.amount -= money
+                print(f"Remaining balance: {person.amount} lv")
+            person.change_status()
+            print("\nUpdated Account Information:")
+            print(person.print_info())
+            break
+    if not account_found:
+        print(f"No account found with ID: {my_id}")
+
+
+withdraw(my_list, money, my_id)

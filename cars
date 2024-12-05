@@ -1,0 +1,73 @@
+class Car:
+    def __init__(self, car_brand, car_model, car_price, car_color, year):
+        self.car_brand = car_brand
+        self.car_model = car_model
+        self.car_price = car_price
+        self.car_color = car_color
+        self.year = year
+
+    def __str__(self):
+        return f"Brand: {self.car_brand}, Model: {self.car_model}, Price: ${self.car_price}," \
+               f" Color: {self.car_color}, Year: {self.year}"
+
+
+c1 = Car("mercedes", "gt63", 300000, "black", 2016)
+c2 = Car("bmw", "e60", 34000, "silver", 2009)
+c3 = Car("mazda", "CX-5", 33000, "red", 2018)
+c4 = Car("chevrolet", "cruise", 27000, "silver", 2009)
+c5 = Car("opel", "astra", 3700, "blue", 2005)
+c6 = Car("audi", "Q7", 67000, "black", 2018)
+
+cars = [c1, c2, c3, c4, c5, c6]
+
+
+def sort_price(cars):
+    print("\nCars sorted by price (highest to lowest):")
+    sorted_by_price = sorted(cars, key=lambda car: car.car_price, reverse=True)
+    for car in sorted_by_price:
+        print(car)
+
+
+def list_by_brand(cars, my_brand):
+    print(f"\nCars from the brand '{my_brand}':")
+    found = False
+    for car in cars:
+        if car.car_brand.lower() == my_brand.lower():
+            print(car)
+            found = True
+    if not found:
+        print(f"No cars found for the brand '{my_brand}'.")
+
+
+def search_by_color(cars, color):
+    print(f"\nSearching for the expensiest car with the color '{color}':")
+    sorted_by_price = sorted(cars, key=lambda car: car.car_price, reverse=True)
+    for car in sorted_by_price:
+        if car.car_color.lower() == color.lower():
+            print(car)
+            return
+    print(f"No cars found with the color '{color}'.")
+
+
+def newest_cars(cars):
+    print("\nNewest cars (manufactured in 2018):")
+    my_list = []
+    for car in cars:
+        if car.year == 2018:
+            my_list.append(car)
+    if my_list:
+        for car in my_list:
+            print(car)
+    else:
+        print("No cars found from the year 2018.")
+
+
+sort_price(cars)
+
+my_brand = input("\nEnter a car brand to search for: ")
+list_by_brand(cars, my_brand)
+
+color = input("\nEnter a car color to search for: ")
+search_by_color(cars, color)
+
+newest_cars(cars)

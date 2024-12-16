@@ -1,0 +1,58 @@
+class Fitness:
+    def __init__(self, ida, f_name, l_name, status, lvl):
+        self.ida = ida
+        self.f_name = f_name
+        self.l_name = l_name
+        self.status = status
+        self.lvl = lvl
+
+    def acc_info(self):
+        print(f"ID: {self.ida}, f_name: {self.f_name}, l_name: {self.l_name}, status: {self.status}, level: {self.lvl}")
+
+    def change_lvl(self):
+        if self.lvl == "beginner":
+            self.lvl = "intermediate"
+        elif self.lvl == "intermediate":
+            self.lvl = "advanced"
+        print(f"ID: {self.ida}, f_name: {self.f_name}, l_name: {self.l_name}, status: {self.status}, level: {self.lvl}")
+
+
+accounts = []
+
+p1 = Fitness(134, "Martin", "Gogulanov", "active", "intermediate")
+p2 = Fitness(453, "Naiden", "Cherniradev", "inactive", "advanced")
+p3 = Fitness(675, "Ivaylo", "Staykov", "active", "beginner")
+p4 = Fitness(876, "Ivelin", "Belovezhdov", "active", "intermediate")
+p5 = Fitness(654, "Georgi", "Baldjiev", "active", "intermediate")
+accounts.append(p1)
+accounts.append(p2)
+accounts.append(p3)
+accounts.append(p4)
+accounts.append(p5)
+
+
+def search_by_ID(accounts):
+    my_id = int(input())
+    for i in accounts:
+        if i.ida == my_id:
+            print("This is the person you try to find: ")
+            i.acc_info()
+
+
+def account_count(accounts):
+    total_acc = 0
+    my_level = input()
+    for j in accounts:
+        if j.lvl == my_level:
+            total_acc += 1
+    print(f"The number of accounts with that level is: {total_acc}")
+
+print("These are the people in the fitness: ")
+for k in accounts:
+    k.acc_info()
+print()
+print("Enter a valid ID: ")
+search_by_ID(accounts)
+print()
+print("Enter a valid level: ")
+account_count(accounts)

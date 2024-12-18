@@ -1,0 +1,85 @@
+class Book:
+    def __init__(self, ida, title, author, price, quantity):
+        self.ida = ida
+        self.title = title
+        self.author = author
+        self.price = price
+        self.quantity = quantity
+
+    def book_info(self):
+        print(f"id: {self.ida}, title: {self.title}, author: {self.author}, "
+              f"price: {self.price}, quantity: {self.quantity}")
+
+    def change_price(self):
+        my_price = float(input("Enter a new price: "))
+        self.price = my_price
+
+    def change_quantity(self):
+        my_quantity = int(input("Enter a new quantity: "))
+        self.quantity = my_quantity
+
+
+book_list = []
+b1 = Book(123, "Pod igoto", "Ivan Vazov", 27, 17)
+b2 = Book(456, "Zhelezniyat svetilnik", "Dimitar Talev", 24, 14)
+b3 = Book(789, "Balkanski Sindrom", "Stanislav Stratiev", 15, 25)
+book_list.append(b1)
+book_list.append(b2)
+book_list.append(b3)
+
+
+def search_by_author():
+    my_author = input()
+    for book in book_list:
+        if book.author == my_author:
+            print(f"The book you search for is: ")
+            book.book_info()
+
+
+def search_by_price_range():
+    min_price = float(input("Enter the minimum price: "))
+    max_price = float(input("Enter the maximum price: "))
+
+    for j in book_list:
+        if min_price <= j.price <= max_price:
+            j.book_info()
+
+
+def sell_book_by_id():
+    my_id = int(input())
+    num = int(input())
+    is_found = False
+    for book in book_list:
+        if book.ida == my_id:
+            is_found = True
+            if book.quantity >= num:
+                book.quantity -= num
+                print("successful purchase!")
+                print(f"{book.quantity} books left!")
+            else:
+                print("Insufficient quantity!")
+                break
+    if not is_found:
+        print("Book is not found")
+
+
+print("Your books at the beginning: ")
+for i in book_list:
+    i.book_info()
+print()
+for i in book_list:
+    i.book_info()
+    i.change_price()
+    i.change_quantity()
+print("Updated list of the books: ")
+for i in book_list:
+    i.book_info()
+print()
+print("Enter an author: ")
+search_by_author()
+print()
+print("Enter a price range: ")
+search_by_price_range()
+print()
+print("Enter an id and the quantity you want to sell: ")
+sell_book_by_id()

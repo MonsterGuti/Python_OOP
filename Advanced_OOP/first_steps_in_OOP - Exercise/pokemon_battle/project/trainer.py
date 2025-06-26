@@ -1,4 +1,4 @@
-from pokemon import Pokemon
+from project.pokemon import Pokemon
 
 class Trainer:
     def __init__(self, name: str):
@@ -12,18 +12,15 @@ class Trainer:
         return "This pokemon is already caught"
 
     def release_pokemon(self, pokemon_name: str):
-        for p in self.pokemons:
-            if p.name == pokemon_name:
-                self.pokemons.remove(p)
+        for pokemon in self.pokemons:
+            if pokemon.name == pokemon_name:
+                self.pokemons.remove(pokemon)
                 return f"You have released {pokemon_name}"
         return "Pokemon is not caught"
 
     def trainer_data(self):
-        result = ""
-        result += f"Pokemon Trainer {self.name}\nPokemon count {len(self.pokemons)}\n"
+        result = f"Pokemon Trainer {self.name}\nPokemon count {len(self.pokemons)}"
         for pokemon in self.pokemons:
-            result += f"- {pokemon.pokemon_details()}\n"
+            result += f"\n- {pokemon.pokemon_details()}"
         return result
-
-
 

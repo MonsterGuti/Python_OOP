@@ -5,9 +5,7 @@ class User:
         self.books = []
 
     def info(self):
-        ordered_books = sorted(self.books)
-        return ', '.join(ordered_books)
+        return ', '.join(sorted(self.books))
 
     def __str__(self):
-        return {self.user_id}, {self.username}, {self.books}
-
+        return f"{self.user_id}, {self.username}, {self.books}"

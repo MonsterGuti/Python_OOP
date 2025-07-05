@@ -1,5 +1,5 @@
 from project.product import Product
 
-class Drink(Product):
-    def __init__(self, name: str, quantity: int = 10):
+class Food(Product):
+    def __init__(self, name: str, quantity: int = 15):
         super().__init__(name, quantity)

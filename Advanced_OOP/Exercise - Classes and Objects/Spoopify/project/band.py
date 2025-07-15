@@ -1,4 +1,4 @@
-from project.album import Album
+from project import Album
 
 class Band:
     def __init__(self, name: str):

@@ -1,4 +1,4 @@
-from project.product import Product
+from project import Product
 
 class Food(Product):
     def __init__(self, name: str, quantity: int = 15):

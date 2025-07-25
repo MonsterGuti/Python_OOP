@@ -1,4 +1,4 @@
-class custom_range:
+class CustomRange:
     def __init__(self, start, stop):
         self.start = start
         self.stop = stop

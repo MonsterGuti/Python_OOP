@@ -1,12 +1,8 @@
 from products.base_product import BaseProduct
 
-
 class Chair(BaseProduct):
-    MATERIAL = "Wood"
-    SUB_TYPE = "Furniture"
-
     def __init__(self, model: str, price: float):
-        super().__init__(model, price, self.MATERIAL, self.SUB_TYPE)
+        super().__init__(model, price, "Wood", "Furniture")
 
     def discount(self):
         self.price *= 0.9

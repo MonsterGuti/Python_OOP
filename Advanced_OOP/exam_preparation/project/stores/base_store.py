@@ -1,15 +1,11 @@
 from abc import ABC, abstractmethod
-from products.base_product import BaseProduct
-
 
 class BaseStore(ABC):
-    PROFIT_FACTOR = 0.1
-
     def __init__(self, name: str, location: str, capacity: int):
         self.name = name
         self.location = location
         self.capacity = capacity
-        self.products: list[BaseProduct] = []
+        self.products = []
 
     @property
     def name(self):
@@ -17,7 +13,7 @@ class BaseStore(ABC):
 
     @name.setter
     def name(self, value):
-        if value.strip() == '':
+        if not value.strip():
             raise ValueError("Store name cannot be empty!")
         self.__name = value
 
@@ -42,33 +38,14 @@ class BaseStore(ABC):
         self.__capacity = value
 
     def get_estimated_profit(self):
-        profit = sum(p.price for p in self.products) * self.PROFIT_FACTOR
+        profit = sum(p.price for p in self.products) * 0.10
         return f"Estimated future profit for {len(self.products)} products is {profit:.2f}"
 
     @property
     @abstractmethod
-    def store_type(self) -> list[str]:
-        """List of allowed product sub_types."""
+    def store_type(self):
         pass
 
+    @abstractmethod
     def store_stats(self):
-        result = [
-            f"Store: {self.name}, location: {self.location}, available capacity: {self.capacity}",
-            self.get_estimated_profit(),
-            f"**{', '.join(self.store_type)} for sale:"
-        ]
-
-        products: dict[str, dict] = {}
-        for product in self.products:
-            key = product.model
-            if key not in products:
-                products[key] = {"pieces": 0, "total_price": 0}
-            products[key]["pieces"] += 1
-            products[key]["total_price"] += product.price
-
-        for model in sorted(products.keys()):
-            count = products[model]["pieces"]
-            avg_price = products[model]["total_price"] / count
-            result.append(f"{model}: {count}pcs, average price: {avg_price:.2f}")
-
-        return "\n".join(result)
+        pass

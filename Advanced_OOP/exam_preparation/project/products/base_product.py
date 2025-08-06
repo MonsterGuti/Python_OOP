@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-
 class BaseProduct(ABC):
     def __init__(self, model: str, price: float, material: str, sub_type: str):
         self.model = model
@@ -14,7 +13,7 @@ class BaseProduct(ABC):
 
     @model.setter
     def model(self, value):
-        if value.strip() == '' or len(value) < 3:
+        if value.strip() == '' or len(value.strip()) < 3:
             raise ValueError("Product model must be at least 3 chars long!")
         self.__model = value
 
@@ -30,5 +29,4 @@ class BaseProduct(ABC):
 
     @abstractmethod
     def discount(self):
-        """Apply discount to the product price."""
         pass
